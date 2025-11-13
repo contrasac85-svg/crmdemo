@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu CRM Empresarial a la Medida - Desarrollo de Plataformas SaaS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2E7BB4;
+            --primary-dark: #1a5380;
+            --accent: #4CAF50;
+            --dark: #1A1A1A;
+            --light: #F5F7FA;
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero .cta-primary {
+            background: var(--accent);
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 5rem 2rem;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--primary-dark);
+        }
+
+        section p {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* FEATURES */
+        .features {
+            background: var(--light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .feature-card p {
+            text-align: left;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* PODCAST SECTION */
+        .podcast {
+            background: white;
+        }
+
+        .podcast-embed {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f0f0f0;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .podcast-placeholder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
+        }
+
+        /* PDF DOWNLOAD */
+        .pdf-download {
+            background: var(--light);
+        }
+
+        .pdf-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .pdf-card .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-download {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .btn-download:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* DEMO SECTION */
+        .demo-section {
+            background: white;
+            text-align: center;
+        }
+
+        .demo-preview {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .demo-screenshot {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .demo-cta {
+            background: var(--accent);
+            color: white;
+            padding: 1.5rem 4rem;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .demo-cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        /* PRICING */
+        .pricing {
+            background: var(--light);
+        }
+
+        .pricing-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--accent);
+        }
+
+        .pricing-card .price {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin: 1rem 0;
+        }
+
+        .pricing-card .price span {
+            font-size: 1.5rem;
+            color: #666;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            font-size: 1.1rem;
+            list-style: none;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .pricing-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        /* CONTACT */
+        .contact {
+            background: var(--primary-dark);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact-info {
+            font-size: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO -->
+    <section class="hero">
+        <h1>💼 Tu CRM Empresarial a la Medida</h1>
+        <p class="tagline">La plataforma SaaS modular que se adapta 100% a tu negocio. Sin plantillas.</p>
+        <a href="#demo" class="cta-primary">Ver un Caso de Estudio</a>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+        <div class="container">
+            <h2>Una Plataforma, Infinitas Soluciones</h2>
+            <p>Creamos los módulos exactos que tu operación requiere. Estos son algunos ejemplos:</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📞</div>
+                    <h3>Módulo de Comunicaciones</h3>
+                    <p>Integramos VoIP, SMS, Email y WhatsApp directamente en tu plataforma.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>Gestión Documental Avanzada</h3>
+                    <p>Genera contratos, reportes y más, con firmas digitales y certificación criptográfica.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>Módulo de Logística y Rutas</h3>
+                    <p>Visualiza clientes, optimiza rutas de entrega o asigna trabajo por zona geográfica.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Módulo de Business Intelligence</h3>
+                    <p>Calcula comisiones, bonos por rendimiento o cualquier KPI de tu equipo.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Dashboards Personalizados</h3>
+                    <p>Creamos dashboards a medida con las métricas que realmente importan para tu negocio.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Plataforma Multi-Proveedor</h3>
+                    <p>Desarrollamos sobre la infraestructura que necesites (Firebase, AWS, Azure) para garantizar escalabilidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PODCAST -->
+    <section class="podcast" id="podcast">
+        <div class="container">
+            <h2>🎙️ Escucha Nuestro Podcast</h2>
+            <p>Descubre cómo transformamos negocios con plataformas a la medida</p>
+
+            <div class="podcast-embed">
+                <div class="podcast-placeholder">
+                    <h3>🎧 [INSERTAR EMBED DE PODCAST AQUÍ]</h3>
+                    <p>Spotify, Apple Podcasts, o tu reproductor favorito</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF DOWNLOAD -->
+    <section class="pdf-download" id="pdf">
+        <div class="container">
+            <h2>📥 Descarga la Información Completa</h2>
+            <p>PDF con todas las características, paquetes y beneficios</p>
+
+            <div class="pdf-card">
+                <div class="icon">📄</div>
+                <h3>Brochure Digital</h3>
+                <p>Características técnicas, planes de precio, y casos de éxito</p>
+                <a href="#" class="btn-download" onclick="alert('PDF descargado: roofaid-brochure.pdf'); return false;">
+                    Descargar PDF
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEMO SECTION -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <h2>🚀 Explora un Caso de Estudio</h2>
+            <p>Mira cómo adaptamos nuestra plataforma para la industria de <strong>Roofing</strong>. (El tuyo será 100% a medida)</p>
+
+            <div class="demo-preview">
+                <!-- Placeholder para screenshot -->
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                            padding: 6rem 2rem; 
+                            border-radius: 16px; 
+                            color: white;
+                            margin-bottom: 2rem;">
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">🖥️ Vista Previa del Dashboard</h3>
+                    <p style="font-size: 1.2rem;">Dashboard completo con gestión de prospectos, llamadas, documentos y métricas</p>
+                </div>
+
+                <a href="https://contrasac85-svg.github.io/crmdemo/demo.html" class="demo-cta" target="_blank">
+                    🎮 Ver Demo (Industria Roofing)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>💎 Planes a la Medida</h2>
+            <p>No usamos plantillas. Construimos exactamente lo que necesitas.</p>
+
+            <div class="pricing-card" style="border: 3px solid var(--primary);">
+                <h3>Plan Mensual</h3>
+                <div class="price">$3,199<span> MXN/mes</span></div>
+                <p style="text-align: center; font-size: 1rem; color: #666; margin: 1rem 0;">
+                    Incluye desarrollo personalizado de módulos base
+                </p>
+                <ul class="pricing-features">
+                    <li>Módulos 100% personalizados a tu industria</li>
+                    <li>Integración con tus sistemas actuales</li>
+                    <li>Sin límite de usuarios</li>
+                    <li>Infraestructura escalable a demanda</li>
+                    <li>Soporte técnico incluido</li>
+                    <li>Desarrollo continuo de nuevas funcionalidades</li>
+                    <li>Backup automático y seguridad</li>
+                    <li>Capacitación de tu equipo</li>
+                </ul>
+                <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 1.5rem; font-style: italic;">
+                    Proyectos enterprise y módulos adicionales: cotización personalizada
+                </p>
+                <a href="#contact" class="cta-primary" style="width: 100%; text-align: center; margin-top: 1rem;">
+                    Cotizar mi Proyecto
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>📞 Contáctanos</h2>
+            <p>Estamos listos para ayudarte a transformar tu negocio</p>
+
+            <div class="contact-info">
+                <p>
+                    <strong>Teléfono:</strong> 
+                    <a href="tel:+524423788891">442-378-8891</a>
+                </p>
+                <p>
+                    <strong>Email:</strong> 
+                    <a href="mailto:contras.a.c.85@gmail.com">contras.a.c.85@gmail.com</a>
+                </p>
+                <p>
+                    <strong>Web:</strong> 
+                    <a href="https://contrasac85-svg.github.io/crmdemo/">contrasac85-svg.github.io/crmdemo</a>
+                </p>
+            </div>
+
+            <a href="https://contrasac85-svg.github.io/crmdemo/demo.html" class="cta-primary" target="_blank" style="margin-top: 2rem;">
+                Ver Demo Ahora
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025

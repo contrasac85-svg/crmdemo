@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo CRM - Caso de Estudio (Industria Roofing)</title>
+    
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFxOqyhIAjwy7ckIZPNkqCza-PuWfNQBo&v=weekly"></script>
+    
+    <style>
+        :root {
+            --primary: #2E7BB4;
+            --primary-dark: #1a5380;
+            --success: #4CAF50;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --text-dark: #1A1A1A;
+            --text-light: #666666;
+            --border: #E0E0E0;
+            --bg-page: #F5F7FA;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background: var(--bg-page);
+            color: var(--text-dark);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ========== DEMO DISCLAIMER BANNER ========== */
+        .demo-disclaimer-banner {
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            color: white;
+            text-align: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            z-index: 101;
+        }
+        .demo-disclaimer-banner a {
+            color: white;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        /* ========== NAVIGATION ========== */
+        .main-nav {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 100;
+            flex-shrink: 0;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-tab {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-tab:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .nav-tab.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* ========== DEMO WATERMARK ========== */
+        .demo-watermark {
+            position: fixed;
+            top: 130px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            z-index: 9999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .demo-watermark:hover {
+            transform: scale(1.05);
+        }
+
+        .demo-watermark-subtitle {
+            font-size: 10px;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .main-content {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .view {
+            display: none;
+            flex: 1;
+            overflow: auto;
+            padding: 2rem;
+        }
+
+        .view.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ========== DASHBOARD VIEW ========== */
+        .dashboard-view {
+            display: flex;
+            gap: 1.5rem;
+            height: 100%;
+        }
+
+        .prospects-panel {
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .prospects-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .prospect-card {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+        }
+
+        .prospect-card:hover {
+            background: #e9ecef;
+            transform: translateX(4px);
+            border-left-color: var(--primary);
+        }
+
+        .prospect-card.selected {
+            background: #e7f3ff;
+            border-left-color: var(--primary);
+        }
+
+        .prospect-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .prospect-address {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .prospect-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-new_lead { background: #fef3c7; color: #92400e; }
+        .status-prospect { background: #dbeafe; color: #1e40af; }
+        .status-contacted { background: #e0e7ff; color: #3730a3; }
+        .status-assigned { background: #fce7f3; color: #9f1239; }
+        .status-converted { background: #d1fae5; color: #065f46; }
+
+        .map-container {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-success:hover {
+            background: #45a049;
+        }
+
+        /* ========== PHONE PANEL ========== */
+        .phone-toggle {
+            position: fixed;
+            right: 0;
+            top: 180px;
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px 0 0 8px;
+            cursor: pointer;
+            z-index: 1000;
+            font-weight: 600;
+            box-shadow: -2px 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .phone-toggle:hover {
+            background: var(--primary-dark);
+        }
+
+        .phone-panel {
+            position: fixed;
+            right: -350px;
+            top: 130px;
+            width: 320px;
+            background: white;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+            border-radius: 16px 0 0 16px;
+            padding: 1.5rem;
+            z-index: 999;
+            transition: right 0.3s;
+        }
+
+        .phone-panel.open {
+            right: 0;
+        }
+
+        .phone-ad {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .phone-ad strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .phone-keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .keypad-btn {
+            padding: 1rem;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .keypad-btn:hover {
+            background: #e0e0e0;
+            transform: scale(1.05);
+        }
+
+        /* ========== MODALS ========== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 99999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: #f5f5f5;
+            color: #000;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        /* ========== FOOTER ========== */
+        .demo-footer {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 9998;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .footer-brand {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .footer-contact {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-cta {
+            background: white;
+            color: #1e3a8a;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .footer-cta:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- DEMO DISCLAIMER BANNER -->
+    <div class="demo-disclaimer-banner">
+        <strong>Importante:</strong> Esto es solo un <strong>ejemplo</strong> de nuestra plataforma (configurada para Roofing).
+        Tu CRM será 100% personalizado a tu industria. 
+        <a href="https://contrasac85-svg.github.io/crmdemo/" target="_blank">Volver para cotizar</a>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="main-nav">
+        <div class="nav-left">
+            <div class="nav-logo">💼 Demo CRM</div>
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="switchView('dashboard')">Dashboard</button>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="user-badge">👤 Usuario Demo</div>
+        </div>
+    </nav>
+
+    <!-- DEMO WATERMARK -->
+    <div class="demo-watermark" onclick="showContactModal()">
+        🎮 MODO DEMO
+        <div class="demo-watermark-subtitle">Click para contactar</div>
+    </div>
+
+    <!-- PHONE TOGGLE -->
+    <div class="phone-toggle" onclick="togglePhone()">
+        📞 Llamadas
+    </div>
+
+    <!-- PHONE PANEL -->
+    <div class="phone-panel" id="phonePanel">
+        <div class="phone-ad">
+            <strong>📞 Módulo de Comunicaciones</strong>
+            Integra VoIP, SMS, Email y WhatsApp en tu plataforma. 
+            Tracking automático de todas las interacciones.
+        </div>
+
+        <h3>Teclado de Marcado</h3>
+        <div style="background: #f0f0f0; padding: 1rem; border-radius: 8px; margin: 1rem 0; text-align: center; font-size: 1.5rem; font-weight: 600;">
+            <span id="phoneDisplay">_</span>
+        </div>
+
+        <div class="phone-keypad">
+            <button class="keypad-btn" onclick="dialNumber('1')">1</button>
+            <button class="keypad-btn" onclick="dialNumber('2')">2</button>
+            <button class="keypad-btn" onclick="dialNumber('3')">3</button>
+            <button class="keypad-btn" onclick="dialNumber('4')">4</button>
+            <button class="keypad-btn" onclick="dialNumber('5')">5</button>
+            <button class="keypad-btn" onclick="dialNumber('6')">6</button>
+            <button class="keypad-btn" onclick="dialNumber('7')">7</button>
+            <button class="keypad-btn" onclick="dialNumber('8')">8</button>
+            <button class="keypad-btn" onclick="dialNumber('9')">9</button>
+            <button class="keypad-btn" onclick="dialNumber('*')">*</button>
+            <button class="keypad-btn" onclick="dialNumber('0')">0</button>
+            <button class="keypad-btn" onclick="dialNumber('#')">#</button>
+        </div>
+
+        <button class="btn btn-success" style="width: 100%; margin-top: 1rem;" onclick="makeCall()">
+            📞 Llamar
+        </button>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- DASHBOARD VIEW -->
+        <div id="dashboard" class="view active">
+            <div class="dashboard-view">
+                <!-- Prospects Panel -->
+                <div class="prospects-panel">
+                    <div class="panel-header">
+                        <span>Prospectos (5)</span>
+                        <button class="btn" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">+ Nuevo</button>
+                    </div>
+                    <div class="prospects-list" id="prospectsList">
+                        <!-- JavaScript will populate this -->
+                    </div>
+                </div>
+
+                <!-- Map Container -->
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="demo-footer">
+        <div class="footer-brand">
+            💼 Plataforma CRM
+            <span style="opacity: 0.7; margin-left: 8px; font-size: 13px; font-weight: normal;">
+                Desarrollo a la Medida
+            </span>
+        </div>
+        <div class="footer-contact">
+            <a href="tel:+524423788891" class="footer-link">📞 442-378-8891</a>
+            <a href="mailto:contras.a.c.85@gmail.com" class="footer-link">✉️ contras.a.c.85@gmail.com</a>
+            <button class="footer-cta" onclick="showContactModal()">
+                Cotizar Ahora
+            </button>
+        </div>
+    </div>
+
+    <!-- CONTACT MODAL -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('contactModal')">×</button>
+            <h2 class="modal-title">📞 Cotiza tu Proyecto</h2>
+            <div class="modal-body">
+                <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
+                    ¿Listo para una plataforma 100% personalizada?
+                </p>
+
+                <div style="background: var(--bg-page); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Información de Contacto</h3>
+                    <p><strong>📞 Teléfono:</strong> 442-378-8891</p>
+                    <p><strong>✉️ Email:</strong> contras.a.c.85@gmail.com</p>
+                    <p><strong>🌐 Web:</strong> contrasac85-svg.github.io/crmdemo</p>
+                </div>
+
+                <h3 style="color: var(--primary); margin: 1.5rem 0 1rem 0;">¿Qué Incluye el Plan Mensual?</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--success); font-weight: bold;">✓</span>
+                        Módulos 100% personalizados a tu industria
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--success); font-weight: bold;">✓</span>
+                        Integración con tus sistemas actuales
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--success); font-weight: bold;">✓</span>
+                        Sin límite de usuarios
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--success); font-weight: bold;">✓</span>
+                        Infraestructura escalable
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--success); font-weight: bold;">✓</span>
+                        Soporte técnico incluido
+                    </li>
+                    <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--success); font-weight: bold;">✓</span>
+                        Desarrollo continuo
+                    </li>
+                </ul>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p style="font-size: 2.5rem; font-weight: 700; color: var(--primary);">
+                        $3,199 <span style="font-size: 1.2rem; color: #666;">MXN/mes</span>
+                    </p>
+                    <p style="color: #666; margin-top: 0.5rem;">Plan mensual • Desarrollo incluido</p>
+                </div>
+
+                <button class="btn btn-success" style="width: 100%; margin-top: 1.5rem; padding: 1rem; font-size: 1.1rem;" onclick="alert('¡Gracias por tu interés! Contáctanos al 442-378-8891')">
+                    Solicitar Cotización
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== DEMO DATA ==========
+        const demoProspects = [
+            {
+                id: 1,
+                name: "John Smith",
+                address: "123 Main St, Springdale",
+                phone: "(479) 555-0101",
+                status: "contacted",
+                lat: 36.1867,
+                lng: -94.1288
+            },
+            {
+                id: 2,
+                name: "Jane Doe",
+                address: "456 Oak Ave, Fayetteville",
+                phone: "(479) 555-0102",
+                status: "converted",
+                lat: 36.0822,
+                lng: -94.1719
+            },
+            {
+                id: 3,
+                name: "Robert Johnson",
+                address: "789 Pine Rd, Rogers",
+                phone: "(479) 555-0103",
+                status: "assigned",
+                lat: 36.3321,
+                lng: -94.1185
+            },
+            {
+                id: 4,
+                name: "Mary Williams",
+                address: "321 Elm St, Bentonville",
+                phone: "(479) 555-0104",
+                status: "prospect",
+                lat: 36.3729,
+                lng: -94.2088
+            },
+            {
+                id: 5,
+                name: "James Brown",
+                address: "654 Maple Dr, Lowell",
+                phone: "(479) 555-0105",
+                status: "new_lead",
+                lat: 36.2550,
+                lng: -94.1302
+            }
+        ];
+
+        let map;
+        let phoneNumber = '';
+
+        // ========== INITIALIZATION ==========
+        window.addEventListener('DOMContentLoaded', () => {
+            loadProspects();
+            initMap();
+            console.log('🎮 Demo CRM cargado - Caso de estudio Roofing');
+        });
+
+        // ========== VIEW SWITCHING ==========
+        function switchView(viewName) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            
+            document.getElementById(viewName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // ========== PROSPECTS ==========
+        function loadProspects() {
+            const container = document.getElementById('prospectsList');
+            container.innerHTML = demoProspects.map(p => `
+                <div class="prospect-card" onclick="selectProspect(${p.id})">
+                    <div class="prospect-name">${p.name}</div>
+                    <div class="prospect-address">${p.address}</div>
+                    <div>
+                        <span class="prospect-status status-${p.status}">
+                            ${p.status.replace('_', ' ')}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function selectProspect(id) {
+            const prospect = demoProspects.find(p => p.id === id);
+            if (prospect && map) {
+                map.setCenter({ lat: prospect.lat, lng: prospect.lng });
+                map.setZoom(14);
+            }
+            
+            document.querySelectorAll('.prospect-card').forEach((card, i) => {
+                card.classList.toggle('selected', i === id - 1);
+            });
+        }
+
+        // ========== MAP ==========
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: { lat: 36.1867, lng: -94.1288 },
+                mapTypeControl: false,
+                streetViewControl: false,
+                fullscreenControl: true
+            });
+
+            // Add markers
+            demoProspects.forEach(p => {
+                const statusColors = {
+                    new_lead: '#f59e0b',
+                    prospect: '#3b82f6',
+                    contacted: '#8b5cf6',
+                    assigned: '#ec4899',
+                    converted: '#10b981'
+                };
+
+                new google.maps.Marker({
+                    position: { lat: p.lat, lng: p.lng },
+                    map: map,
+                    title: p.name,
+                    icon: {
+                        path: google.maps.SymbolPath.CIRCLE,
+                        scale: 8,
+                        fillColor: statusColors[p.status] || '#666',
+                        fillOpacity: 1,
+                        strokeColor: '#fff',
+                        strokeWeight: 2
+                    }
+                });
+            });
+        }
+
+        // ========== PHONE PANEL ==========
+        function togglePhone() {
+            const panel = document.getElementById('phonePanel');
+            panel.classList.toggle('open');
+        }
+
+        function dialNumber(num) {
+            phoneNumber += num;
+            document.getElementById('phoneDisplay').textContent = phoneNumber || '_';
+        }
+
+        function makeCall() {
+            if (phoneNumber.length > 0) {
+                alert(`📞 Llamada demo iniciada a: ${phoneNumber}\n\n✅ En la plataforma real, esto conecta vía VoIP, SMS o WhatsApp según tu configuración.`);
+                phoneNumber = '';
+                document.getElementById('phoneDisplay').textContent = '_';
+            } else {
+                alert('Por favor ingresa un número');
+            }
+        }
+
+        // ========== MODALS ==========
+        function showContactModal() {
+            document.getElementById('contactModal').classList.add('show');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        // Close modals on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
