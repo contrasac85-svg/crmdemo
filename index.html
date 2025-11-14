@@ -45,14 +45,14 @@
     <!-- ============================================
          HERO CON FINISHER-HEADER
          ============================================ -->
-    <header class="header finisher-header" style="width: 100%; height: 300px;">
+    <header class="header finisher-header">
         <!-- Contenido del Header (sobre la animación) -->
         <div class="absolute inset-0 z-10 flex flex-col">
             
             <!-- Barra de Navegación -->
             <nav class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                 <div class="flex justify-between items-center">
-                    <span class="text-2xl font-bold text-white">💼 INCOVIAR </span>
+                    <span class="text-2xl font-bold text-white">💼 TU EMPRESA</span>
                     
                     <div class="hidden md:flex space-x-6">
                         <a href="#modulos" class="text-gray-200 hover:text-white transition-colors">Módulos</a>
@@ -229,17 +229,19 @@
             </div>
         </div>
     </section>
-    <!-- PODCAST -->
-    </section>
+    <!-- ============================================
+         PODCAST
+         ============================================ -->
+    <section class="py-16 md:py-24 bg-white">
         <div class="container">
             <h2 class="animate-on-scroll">🎙️ Escucha Nuestro Podcast</h2>
             <p class="animate-on-scroll">Descubre cómo transformamos negocios con plataformas a la medida.</p>
-            <div class="audio-player-container animate-on-scroll">
-                <audio controls class="audio-player">
-                    <source "./audio-inmersion.mp3" type="audio/mpeg">
-                    Tu navegador no soporta el elemento de audio.
-                </audio>
-            </div>
+                <div class="audio-player-container animate-on-scroll">
+                    <audio controls class="audio-player">
+                        <source src="audio-inmersion.mp3" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                </div>
             <div class="audio-text animate-on-scroll">
                 <p><strong>Episodio:</strong>CRM Soluciones</p>
                 <p>Descubre nuestra visión de hacer automatización simple para todos.</p>
@@ -354,11 +356,11 @@
     },
     "colors": {
         "background": "#1a1a2e ",
-        "particles": [
+        "particles":[
         "#FF0000",
         "#00FF00",
         "#0000FF",
-        "#ffffff",
+        "#ffffff"
         ]
     },
     "blending": "overlay",
