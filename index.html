@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plataforma CRM a la Medida - Desarrollo SaaS Híbrido</title>
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
     <!-- Google Font (Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +21,6 @@
             height: 75vh;
             position: relative;
             overflow: hidden;
-            background: #101010; /* Fallback mientras carga */
         }
 
         @media (max-width: 768px) {
@@ -344,34 +340,32 @@
     <!-- Inicializar Finisher Header con tu config -->
     <script type="text/javascript">
     new FinisherHeader({
-    "count": 37,
-    "size": {
-        "min": 1100,
-        "max": 1300,
-        "pulse": 1.1
-    },
-    "speed": {
-        "x": { "min": 0.6, "max": 3 },
-        "y": { "min": 0.6, "max": 3 }
-    },
-    "colors": {
-        "background": "#1a1a2e ",
-        "particles":[
-        "#FF0000",
-        "#00FF00",
-        "#0000FF",
-        "#ffffff"
-        ]
-    },
-    "blending": "overlay",
-    "opacity": {
-        "center": 1,
-        "edge": 0.1
-    },
-    "skew": 0,
-    "shapes": [
-        "c"
-    ]
+        "count": 37,
+        "size": {
+            "min": 1100,
+            "max": 1300,
+            "pulse": 1.1
+        },
+        "speed": {
+            "x": { "min": 0.6, "max": 3 },
+            "y": { "min": 0.6, "max": 3 }
+        },
+        "colors": {
+            "background": "#1a1a2e",      // Azul oscuro
+            "particles": [
+                "#FF0000",  // Rojo
+                "#00FF00",  // Verde
+                "#0000FF",  // Azul
+                "#FFFF00"   // Amarillo
+            ]
+        },
+        "blending": "screen",
+        "opacity": {
+            "center": 0.45,
+            "edge": 0
+        },
+        "skew": 0,
+        "shapes": ["c"]  // c = círculos
     });
     </script>
 
