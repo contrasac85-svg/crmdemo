@@ -227,21 +227,51 @@
         </div>
     </section>
     <!-- ============================================
-         PODCAST
+         PODCAST video pdf
          ============================================ -->
-    <section class="py-16 md:py-24 bg-white">
-        <div class="container">
-            <h2 class="animate-on-scroll">🎙️ Escucha Nuestro Podcast</h2>
-            <p class="animate-on-scroll">Descubre cómo transformamos negocios con plataformas a la medida.</p>
-                <div class="audio-player-container animate-on-scroll">
-                    <audio controls class="audio-player">
-                        <source src="audio-inmersion.mp3" type="audio/mpeg">
-                        Tu navegador no soporta el elemento de audio.
-                    </audio>
+    <section id="multimedia" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Explora la Plataforma</h2>
+                <p class="mt-4 text-lg text-gray-600">Escucha nuestra visión, ve el software en acción y descarga todos los detalles.</p>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg sticky top-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">🎥 Demo Rápido de la Interfaz</h3>
+                    <video controls class="w-full rounded-xl shadow-lg border border-gray-200">
+                        <source src="demo_plataforma.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <p class="mt-4 text-gray-600">Un vistazo real a cómo se ve y se siente la plataforma en el día a día.</p>
                 </div>
-            <div class="audio-text animate-on-scroll">
-                <p><strong>Episodio:</strong>CRM Soluciones</p>
-                <p>Descubre nuestra visión de hacer automatización simple para todos.</p>
+
+                <div class="space-y-8">
+                    <div class="bg-gray-50 rounded-xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">🎙️ Nuestra Visión (Podcast)</h3>
+                        <p class="mb-4 text-gray-600">Descubre cómo transformamos negocios con plataformas a la medida.</p>
+                        <audio controls class="audio-player">
+                            <source src="audio-inmersion.mp3" type="audio/mpeg">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                        <div class="mt-4">
+                            <p><strong>Episodio:</strong> CRM Soluciones</p>
+                            <p class="text-sm text-gray-600">Automatización simple para todos.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-400 rounded-lg p-6 text-center">
+                        <h3 class="text-xl font-bold text-blue-900">¿Quieres conocer más detalles?</h3>
+                        <p class="mt-2 text-blue-800">Descarga el folleto completo con información detallada de nuestros planes y módulos.</p>
+                        <a href="folleto.pdf" download
+                           class="mt-5 inline-block bg-blue-500 text-white font-bold py-3 px-6 rounded-full text-lg hover:bg-blue-600 transition-all transform hover:scale-105">
+                            📥 Descargar Folleto (.pdf)
+                        </a>
+                        </div>
+                </div>
+
             </div>
         </div>
     </section>
