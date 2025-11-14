@@ -1,521 +1,386 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu CRM Empresarial a la Medida - Desarrollo de Plataformas SaaS</title>
+    <title>Plataforma CRM a la Medida - Desarrollo SaaS Híbrido</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Font (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #2E7BB4;
-            --primary-dark: #1a5380;
-            --accent: #4CAF50;
-            --dark: #1A1A1A;
-            --light: #F5F7FA;
-            --shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-
         body {
-            font-family: 'Segoe UI', -apple-system, sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
         }
-
-        /* HERO SECTION */
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            min-height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-        }
-
-        .hero .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-
-        .hero .cta-primary {
-            background: var(--accent);
-            color: white;
-            padding: 1.2rem 3rem;
-            font-size: 1.3rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 700;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .hero .cta-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-        }
-
-        /* CONTAINER */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            padding: 5rem 2rem;
-        }
-
-        section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-            color: var(--primary-dark);
-        }
-
-        section p {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* FEATURES */
-        .features {
-            background: var(--light);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-dark);
-        }
-
-        .feature-card p {
-            text-align: left;
-            font-size: 1rem;
-            color: #666;
-        }
-
-        /* PODCAST SECTION */
-        .podcast {
-            background: white;
-        }
-
-        .podcast-embed {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #f0f0f0;
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-        }
-
-        .podcast-placeholder {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 4rem 2rem;
-            border-radius: 12px;
-            font-size: 1.2rem;
-        }
-
-        /* PDF DOWNLOAD */
-        .pdf-download {
-            background: var(--light);
-        }
-
-        .pdf-card {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            text-align: center;
-        }
-
-        .pdf-card .icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .btn-download {
-            background: var(--primary);
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
-        }
-
-        .btn-download:hover {
-            background: var(--primary-dark);
-            transform: scale(1.05);
-        }
-
-        /* DEMO SECTION */
-        .demo-section {
-            background: white;
-            text-align: center;
-        }
-
-        .demo-preview {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .demo-screenshot {
+        
+        /* Container para Finisher Header */
+        .header.finisher-header {
             width: 100%;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            margin-bottom: 2rem;
-        }
-
-        .demo-cta {
-            background: var(--accent);
-            color: white;
-            padding: 1.5rem 4rem;
-            font-size: 1.5rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 700;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .demo-cta:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-        }
-
-        /* PRICING */
-        .pricing {
-            background: var(--light);
-        }
-
-        .pricing-card {
-            max-width: 500px;
-            margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            border: 3px solid var(--accent);
-        }
-
-        .pricing-card .price {
-            font-size: 4rem;
-            font-weight: 800;
-            color: var(--primary-dark);
-            margin: 1rem 0;
-        }
-
-        .pricing-card .price span {
-            font-size: 1.5rem;
-            color: #666;
-        }
-
-        .pricing-features {
-            text-align: left;
-            margin: 2rem 0;
-        }
-
-        .pricing-features li {
-            padding: 0.75rem 0;
-            font-size: 1.1rem;
-            list-style: none;
-            padding-left: 2rem;
+            height: 75vh;
             position: relative;
+            overflow: hidden;
+            background: #101010; /* Fallback mientras carga */
         }
 
-        .pricing-features li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-
-        /* CONTACT */
-        .contact {
-            background: var(--primary-dark);
-            color: white;
-            text-align: center;
-        }
-
-        .contact h2 {
-            color: white;
-        }
-
-        .contact-info {
-            font-size: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .contact-info a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #0f172a;
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        footer p {
-            color: rgba(255,255,255,0.7);
-        }
-
-        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            .header.finisher-header {
+                height: 85vh;
             }
+        }
 
-            .hero .tagline {
-                font-size: 1.2rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
+        /* Audio player styling */
+        audio {
+            width: 100%;
+            border-radius: 99px;
+            border: 1px solid #e2e8f0;
         }
     </style>
 </head>
-<body>
-    <!-- HERO -->
-    <section class="hero">
-        <h1>💼 Tu CRM Empresarial a la Medida</h1>
-        <p class="tagline">La plataforma SaaS modular que se adapta 100% a tu negocio. Sin plantillas.</p>
-        <a href="#demo" class="cta-primary">Ver un Caso de Estudio</a>
-    </section>
+<body class="text-gray-800 bg-gray-50">
 
-    <!-- FEATURES -->
-    <section class="features">
-        <div class="container">
-            <h2>Una Plataforma, Infinitas Soluciones</h2>
-            <p>Creamos los módulos exactos que tu operación requiere. Estos son algunos ejemplos:</p>
+    <!-- ============================================
+         HERO CON FINISHER-HEADER
+         ============================================ -->
+    <header class="header finisher-header">
+        <!-- Contenido del Header (sobre la animación) -->
+        <div class="absolute inset-0 z-10 flex flex-col">
+            
+            <!-- Barra de Navegación -->
+            <nav class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <div class="flex justify-between items-center">
+                    <span class="text-2xl font-bold text-white">💼 TU EMPRESA</span>
+                    
+                    <div class="hidden md:flex space-x-6">
+                        <a href="#modulos" class="text-gray-200 hover:text-white transition-colors">Módulos</a>
+                        <a href="#demo" class="text-gray-200 hover:text-white transition-colors">Demo</a>
+                        <a href="#contacto" class="text-gray-200 hover:text-white transition-colors">Contacto</a>
+                    </div>
+                    
+                    <a href="#precio" class="hidden md:inline-block bg-blue-500 text-white font-medium py-2 px-5 rounded-full hover:bg-blue-600 transition-all">
+                        Cotizar
+                    </a>
+                </div>
+            </nav>
 
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📞</div>
-                    <h3>Módulo de Comunicaciones</h3>
-                    <p>Integramos VoIP, SMS, Email y WhatsApp directamente en tu plataforma.</p>
+            <!-- Hero Content -->
+            <div class="flex-1 flex items-center justify-center text-center px-4">
+                <div class="max-w-3xl">
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight">
+                        Tu Plataforma de Negocio, <span class="text-blue-400">100% a la Medida.</span>
+                    </h1>
+                    <p class="mt-6 text-xl text-gray-200 max-w-2xl mx-auto">
+                        No vendemos CRMs. Construimos el ecosistema digital exacto que tu empresa necesita: Nube, Híbrido o Local.
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="#precio" class="bg-blue-500 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-600 transition-all transform hover:scale-105 shadow-2xl">
+                            Cotizar mi Proyecto
+                        </a>
+                        <a href="demo.html" target="_blank" class="bg-gray-700/50 backdrop-blur-sm text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-600/50 transition-all transform hover:scale-105">
+                            Ver Demo
+                        </a>
+                        <!-- PODCAST -->
+                        </section>
+                            <div class="container">
+                                <h2 class="animate-on-scroll">🎙️ Escucha Nuestro Podcast</h2>
+                                <p class="animate-on-scroll">Descubre cómo transformamos negocios con plataformas a la medida.</p>
+                                <div class="audio-player-container animate-on-scroll">
+                                    <audio controls class="audio-player">
+                                        <source src="audio-inmersion.mp3" type="audio/mpeg">
+                                        Tu navegador no soporta el elemento de audio.
+                                    </audio>
+                                </div>
+                                <div class="audio-text animate-on-scroll">
+                                    <p><strong>Episodio:</strong>CRM Soluciones</p>
+                                    <p>Descubre nuestra visión de hacer automatización simple para todos.</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ============================================
+         PLATAFORMA: NUBE / HÍBRIDO / LOCAL
+         ============================================ -->
+    <section id="plataforma" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Tu Plataforma, Tus Reglas</h2>
+                <p class="mt-4 text-lg text-gray-600">Creamos soluciones que se adaptan a ti, no al revés.</p>
+            </div>
+            
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 100% Nube -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-5xl mb-4">☁️</div>
+                    <h3 class="text-xl font-bold">100% en la Nube</h3>
+                    <p class="mt-2 text-gray-600">Sin instalación. Accede desde cualquier navegador. Escalabilidad y seguridad garantizadas.</p>
+                </div>
+                
+                <!-- Modelo Híbrido -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border-2 border-blue-500">
+                    <div class="text-5xl mb-4">🔄</div>
+                    <h3 class="text-xl font-bold">Modelo Híbrido</h3>
+                    <p class="mt-2 text-gray-600">Conecta tu base de datos local (SQL, MySQL). Nube solo para interfaz. Control total de tus datos.</p>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon">📄</div>
-                    <h3>Gestión Documental Avanzada</h3>
-                    <p>Genera contratos, reportes y más, con firmas digitales y certificación criptográfica.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🗺️</div>
-                    <h3>Módulo de Logística y Rutas</h3>
-                    <p>Visualiza clientes, optimiza rutas de entrega o asigna trabajo por zona geográfica.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3>Módulo de Business Intelligence</h3>
-                    <p>Calcula comisiones, bonos por rendimiento o cualquier KPI de tu equipo.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Dashboards Personalizados</h3>
-                    <p>Creamos dashboards a medida con las métricas que realmente importan para tu negocio.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">☁️</div>
-                    <h3>Plataforma Multi-Proveedor</h3>
-                    <p>Desarrollamos sobre la infraestructura que necesites (Firebase, AWS, Azure) para garantizar escalabilidad.</p>
+                <!-- Data Agnostic -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-5xl mb-4">🗄️</div>
+                    <h3 class="text-xl font-bold">Data Agnostic</h3>
+                    <p class="mt-2 text-gray-600">Tomamos datos de Excel, apps viejas o donde los tengas. Los centralizamos y procesamos.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PODCAST -->
-    <section class="podcast" id="podcast">
-        <div class="container">
-            <h2>🎙️ Escucha Nuestro Podcast</h2>
-            <p>Descubre cómo transformamos negocios con plataformas a la medida</p>
+    <!-- ============================================
+         MÓDULOS DISPONIBLES
+         ============================================ -->
+    <section id="modulos" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Un Módulo para Cada Necesidad</h2>
+                <p class="mt-4 text-lg text-gray-600">Construimos tu plataforma solo con las piezas que necesitas.</p>
+            </div>
+            
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <div class="text-4xl mb-3">📞</div>
+                    <h3 class="text-xl font-bold">Módulo de Comunicaciones</h3>
+                    <p class="mt-2 text-gray-600">VoIP, SMS, Email y WhatsApp integrados. Historial completo de contactos.</p>
+                </div>
 
-            <div class="podcast-embed">
-                <div class="podcast-placeholder">
-                    <h3>🎧 [INSERTAR EMBED DE PODCAST AQUÍ]</h3>
-                    <p>Spotify, Apple Podcasts, o tu reproductor favorito</p>
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <div class="text-4xl mb-3">📄</div>
+                    <h3 class="text-xl font-bold">Gestión Documental</h3>
+                    <p class="mt-2 text-gray-600">Contratos, reportes con certificación digital y firmas electrónicas.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <div class="text-4xl mb-3">🗺️</div>
+                    <h3 class="text-xl font-bold">Logística y Mapas</h3>
+                    <p class="mt-2 text-gray-600">Visualiza clientes, optimiza rutas y asigna trabajo por zona geográfica.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <div class="text-4xl mb-3">📊</div>
+                    <h3 class="text-xl font-bold">Business Intelligence</h3>
+                    <p class="mt-2 text-gray-600">Dashboards en tiempo real. Métricas y KPIs personalizados.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <div class="text-4xl mb-3">🗄️</div>
+                    <h3 class="text-xl font-bold">Bases de Datos</h3>
+                    <p class="mt-2 text-gray-600">Nube propia o conexión a tu BD local. Almacenamiento seguro.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <div class="text-4xl mb-3">📱</div>
+                    <h3 class="text-xl font-bold">Captura de Leads</h3>
+                    <p class="mt-2 text-gray-600">Integra Facebook, Instagram y Google. Leads automáticos al CRM.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PDF DOWNLOAD -->
-    <section class="pdf-download" id="pdf">
-        <div class="container">
-            <h2>📥 Descarga la Información Completa</h2>
-            <p>PDF con todas las características, paquetes y beneficios</p>
+    <!-- ============================================
+         ROADMAP FUTURO
+         ============================================ -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Mirando Hacia el Futuro</h2>
+                <p class="mt-4 text-lg text-gray-600">Próximas integraciones en desarrollo:</p>
+            </div>
+            
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-8">
+                    <span class="text-6xl">🤖</span>
+                    <h3 class="mt-4 text-xl font-bold">Módulos de I.A.</h3>
+                    <p class="mt-2 text-gray-600">Resumen de llamadas, análisis de sentimiento y chatbots inteligentes.</p>
+                </div>
 
-            <div class="pdf-card">
-                <div class="icon">📄</div>
-                <h3>Brochure Digital</h3>
-                <p>Características técnicas, planes de precio, y casos de éxito</p>
-                <a href="#" class="btn-download" onclick="alert('PDF descargado: roofaid-brochure.pdf'); return false;">
-                    Descargar PDF
+                <div class="text-center p-8">
+                    <span class="text-6xl">📑</span>
+                    <h3 class="mt-4 text-xl font-bold">Office 365 y Google</h3>
+                    <p class="mt-2 text-gray-600">Calendario, email y hojas de cálculo integrados nativamente.</p>
+                </div>
+
+                <div class="text-center p-8">
+                    <span class="text-6xl">📈</span>
+                    <h3 class="mt-4 text-xl font-bold">Análisis Predictivo</h3>
+                    <p class="mt-2 text-gray-600">Predice qué clientes son más probables de comprar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         DEMO
+         ============================================ -->
+    <section id="demo" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">🚀 Explora un Caso de Estudio</h2>
+            
+            <div class="mt-6 max-w-3xl mx-auto p-6 bg-yellow-100 border-l-4 border-yellow-400 rounded-lg">
+                <p class="text-lg text-yellow-800">
+                    <strong class="font-bold">¡IMPORTANTE!</strong> Este demo es una <strong class="underline">versión simplificada</strong> para la industria de Roofing.
+                    <br><br>
+                    Tu plataforma se construirá desde cero con los módulos exactos que necesites.
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <a href="demo.html" target="_blank"
+                   class="inline-block bg-green-500 text-white font-bold py-4 px-10 rounded-full text-xl hover:bg-green-600 transition-all transform hover:scale-105 shadow-2xl">
+                    🎮 Ver Demo Interactivo
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- DEMO SECTION -->
-    <section class="demo-section" id="demo">
-        <div class="container">
-            <h2>🚀 Explora un Caso de Estudio</h2>
-            <p>Mira cómo adaptamos nuestra plataforma para la industria de <strong>Roofing</strong>. (El tuyo será 100% a medida)</p>
+    <!-- ============================================
+         PRICING
+         ============================================ -->
+    <section id="precio" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Planes Simples, Sin Sorpresas</h2>
+                <p class="mt-4 text-lg text-gray-600">Construimos exactamente lo que necesitas.</p>
+            </div>
 
-            <div class="demo-preview">
-                <!-- Placeholder para screenshot -->
-                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                            padding: 6rem 2rem; 
-                            border-radius: 16px; 
-                            color: white;
-                            margin-bottom: 2rem;">
-                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">🖥️ Vista Previa del Dashboard</h3>
-                    <p style="font-size: 1.2rem;">Dashboard completo con gestión de prospectos, llamadas, documentos y métricas</p>
+            <div class="mt-16 max-w-lg mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-blue-500">
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-center">Plan Mensual</h3>
+                    <p class="mt-2 text-center text-gray-600">Desarrollo y módulos base incluidos</p>
+                    
+                    <div class="mt-8 text-center">
+                        <span class="text-6xl font-extrabold text-gray-900">$3,199</span>
+                        <span class="text-xl font-medium text-gray-500"> MXN/mes</span>
+                    </div>
+
+                    <ul class="mt-8 space-y-4">
+                        <li class="flex items-center">
+                            <svg class="h-6 w-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-gray-700">Módulos 100% personalizados</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-6 w-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-gray-700">Conexión a bases locales o nube</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-6 w-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-gray-700">Sin límite de usuarios</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="h-6 w-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span class="text-gray-700">Soporte y desarrollo continuo</span>
+                        </li>
+                    </ul>
                 </div>
+                <div class="p-8 bg-gray-50">
+                    <a href="#contacto"
+                       class="block w-full text-center bg-blue-500 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-600 transition-all">
+                        Cotizar mi Proyecto
+                    </a>
+                </div>
+            </div>
 
-                <a href="https://contrasac85-svg.github.io/crmdemo/demo.html" class="demo-cta" target="_blank">
-                    🎮 Ver Demo (Industria Roofing)
+            <p class="mt-8 text-center text-gray-500 italic">Proyectos enterprise y módulos adicionales: cotización personalizada</p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACTO
+         ============================================ -->
+    <section id="contacto" class="py-16 md:py-24 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold">¿Listo para transformar tu negocio?</h2>
+            <p class="mt-4 text-lg text-gray-300">Hablemos hoy mismo. Construimos tu solución.</p>
+            
+            <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                <div class="text-lg">
+                    <strong>📞 Teléfono:</strong><br>
+                    <a href="tel:+524423788891" class="text-blue-400 hover:text-blue-300 text-2xl font-bold">442-378-8891</a>
+                </div>
+                <div class="text-lg">
+                    <strong>✉️ Email:</strong><br>
+                    <a href="mailto:contras.a.c.85@gmail.com" class="text-blue-400 hover:text-blue-300 break-all">contras.a.c.85@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <a href="demo.html" target="_blank" class="bg-green-500 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-green-600 transition-all shadow-xl">
+                    Ver el Demo Ahora
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- PRICING -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2>💎 Planes a la Medida</h2>
-            <p>No usamos plantillas. Construimos exactamente lo que necesitas.</p>
-
-            <div class="pricing-card" style="border: 3px solid var(--primary);">
-                <h3>Plan Mensual</h3>
-                <div class="price">$3,199<span> MXN/mes</span></div>
-                <p style="text-align: center; font-size: 1rem; color: #666; margin: 1rem 0;">
-                    Incluye desarrollo personalizado de módulos base
-                </p>
-                <ul class="pricing-features">
-                    <li>Módulos 100% personalizados a tu industria</li>
-                    <li>Integración con tus sistemas actuales</li>
-                    <li>Sin límite de usuarios</li>
-                    <li>Infraestructura escalable a demanda</li>
-                    <li>Soporte técnico incluido</li>
-                    <li>Desarrollo continuo de nuevas funcionalidades</li>
-                    <li>Backup automático y seguridad</li>
-                    <li>Capacitación de tu equipo</li>
-                </ul>
-                <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 1.5rem; font-style: italic;">
-                    Proyectos enterprise y módulos adicionales: cotización personalizada
-                </p>
-                <a href="#contact" class="cta-primary" style="width: 100%; text-align: center; margin-top: 1rem;">
-                    Cotizar mi Proyecto
-                </a>
-            </div>
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="bg-gray-900 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 Plataforma CRM a la Medida. Todos los derechos reservados.</p>
         </div>
-    </section>
+    </footer>
 
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2>📞 Contáctanos</h2>
-            <p>Estamos listos para ayudarte a transformar tu negocio</p>
+    <!-- ============================================
+         SCRIPTS
+         ============================================ -->
+    
+    <!-- Finisher Header Script (Minified) -->
+    <script type="text/javascript">
+    !function(){"use strict";function t(t,i){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}function i(t,i){for(var e=0;e<i.length;e++){var s=i[e];s.enumerable=s.enumerable||!1,s.configurable=!0,"value"in s&&(s.writable=!0),Object.defineProperty(t,s.key,s)}}function e(t,e,s){return e&&i(t.prototype,e),s&&i(t,s),t}function s(t){return(s="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function o(t,i){return!i||"object"!==s(i)&&"function"!=typeof i?function(t){if(void 0===t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return t}(t):i}function n(t){return(n=Object.setPrototypeOf?Object.getPrototypeOf:function(t){return t.__proto__||Object.getPrototypeOf(t)})(t)}function r(t,i){return(r=Object.setPrototypeOf||function(t,i){return t.__proto__=i,t})(t,i)}function h(t,i){if("function"!=typeof i&&null!==i)throw new TypeError("Super expression must either be null or a function");t.prototype=Object.create(i&&i.prototype,{constructor:{value:t,writable:!0,configurable:!0}}),i&&r(t,i)}function a(t){var i=Node.prototype.parentElement,e=Node.prototype.contains;return function(){for(var s=this;s&&s.parentElement;){if(s.parentElement.matches(t))return s.parentElement;if(i.call(s).matches(t))return i.call(s);s=s.parentElement}for(s=this;s&&s.parentElement;)s=s.parentElement;if(!s)return null;var o=s.querySelectorAll(t);if(o)for(var n=0;n<o.length;n++)if(e.call(o[n],this))return o[n];return null}}function l(){Element.prototype.matches||(Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector),Element.prototype.closest||(Element.prototype.closest=a.call(Element.prototype)),Element.prototype.find||(Element.prototype.find=function(t){return this.querySelector(t)}),Element.prototype.findAll||(Element.prototype.findAll=function(t){return this.querySelectorAll(t)})}function c(t,i,e,s){var o=arguments.length>4&&void 0!==arguments[4]?arguments[4]:null;return s-e==0?i:t==s?i:t==e?i:(t-e)/(s-e)*(o-i)+i}function d(t,i){return Math.floor(Math.random()*(i-t+1))+t}function p(t,i){return t+Math.random()*(i-t)}function u(t){return t[d(0,t.length-1)]}function m(t,i){var e=t>i?[i,t]:[t,i];return p.apply(void 0,e)}var f,g;f=window,g=function(){function i(){t(this,i)}return e(i,null,[{key:"setup",value:function(){l()}},{key:"getOptions",value:function(t,i){return function(t,e){for(var s in e)t.hasOwnProperty(s)?i.hasOwnProperty(s)&&(t[s]=i[s]):t[s]=e[s];return t}(t,i)}},{key:"clamp",value:function(t,i,e){return Math.min(Math.max(t,i),e)}},{key:"map",value:function(t,i,e,s,o){return c(t,s,i,e,o)}},{key:"lerp",value:function(t,i,e){return(1-e)*t+e*i}},{key:"norm",value:function(t,i,e){return(t-i)/(e-i)}},{key:"rand",value:function(t,i){return d(t,i)}},{key:"randF",value:function(t,i){return p(t,i)}},{key:"randArr",value:function(t){return u(t)}},{key:"randProperty",value:function(t){var i=Object.keys(t);return t[i[d(0,i.length-1)]]}},{key:"randAngle",value:function(t){return p(0,2*Math.PI)}},{key:"randSign",value:function(t){return.5>Math.random()?1:-1}},{key:"randSignArr",value:function(t){return u(t)*this.randSign()}},{key:"randColor",value:function(t){if(t&&t.length>0)return u(t);var i=function(){return d(0,255)};return"rgb(".concat(i(),",").concat(i(),",").concat(i(),")")}},{key:"randNoise",value:function(t,i){return m(t,i)}},{key:"createCanvas",value:function(t,i){var e=t.find("canvas");e||(e=document.createElement("canvas"),t.appendChild(e));var s=t.getBoundingClientRect();return e.width=s.width,e.height=s.height,{canvas:e,ctx:e.getContext("2d"),width:s.width,height:s.height}}},{key:"distance",value:function(t,i,e,s){var o=e-t,n=s-i;return Math.sqrt(o*o+n*n)}},{key:"angle",value:function(t,i,e,s){return Math.atan2(s-i,e-t)}},{key:"toDegree",value:function(t){return 180/Math.PI*t}},{key:"toRadian",value:function(t){return t*Math.PI/180}},{key:"truncate",value:function(t,i){return parseFloat(t.toFixed(i))}},{key:"wave",value:function(t,i,e){return e=e||0,(Math.sin(t+e)+1)/2*i}},{key:"draw",value:function(t,i){t.beginPath(),i(t),t.closePath()}},{key:"drawCircle",value:function(t,i,e,s){this.draw(t,(function(t){t.arc(i,e,s,0,2*Math.PI)}))}},{key:"drawRect",value:function(t,i,e,s,o){this.draw(t,(function(t){t.rect(i,e,s,o)}))}},{key:"drawTriangle",value:function(t,i,e,s){this.draw(t,(function(t){var o=s/2;t.moveTo(i,e-o),t.lineTo(i+o,e+o),t.lineTo(i-o,e+o)}))}},{key:"drawShape",value:function(t,i,e,s,o){"c"===o||"circle"===o?this.drawCircle(t,i,e,s):"r"===o||"rect"===o?this.drawRect(t,i-s/2,e-s/2,s,s):"t"===o||"triangle"===o&&this.drawTriangle(t,i,e,s)}}]),i}(),f.Utils=g},void 0===f.Utils&&g(),window.FinisherHeader=function(){h(i,g);var s,a,l,c,d,p,m,f,y=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(t){return!1}}();function i(e){var s;if(h(s=o(this,n(i).call(this))),n(i)){var r=n(s).constructor;r.name}return s.options=g.getOptions({count:100,size:{min:1,max:5,pulse:.5},speed:{x:{min:0,max:1},y:{min:0,max:1}},colors:{background:"#222",particles:["#f35d4f","#f35d4f","#f35d4f","#f35d4f","#f35d4f","#f35d4f","#f35d4f","#f35d4f","#f35d4f","#27a3f3","#27a3f3","#27a3f3"]},blending:!1,opacity:{center:1,edge:0},skew:0,shapes:["c"]},e),s.setup(),s.init(),s}return e(i,[{key:"init",value:function(){this.canvas=g.createCanvas(document.querySelector(".finisher-header")),this.particles=[],this.shapes=this.options.shapes,this.colors=this.options.colors.particles,this.background=this.options.colors.background,this.count=this.options.count,this.minSize=this.options.size.min,this.maxSize=this.options.size.max,this.pulse=this.options.size.pulse,this.minSpeedX=this.options.speed.x.min,this.maxSpeedX=this.options.speed.x.max,this.minSpeedY=this.options.speed.y.min,this.maxSpeedY=this.options.speed.y.max,this.opacityCenter=this.options.opacity.center,this.opacityEdge=this.options.opacity.edge,this.blending=this.options.blending,this.skew=this.options.skew,this.build(),this.render()}},{key:"build",value:function(){for(var t=0;t<this.count;t++)this.particles.push(this.buildParticle())}},{key:"buildParticle",value:function(){var t=this.canvas.width,i=this.canvas.height,e=g.randF(this.minSize,this.maxSize),s=g.randAngle(),o=g.randNoise(this.minSpeedX,this.maxSpeedX),n=g.randNoise(this.minSpeedY,this.maxSpeedY),r={x:t/2,y:i/2,size:e,ox:t/2,oy:i/2,os:e,pulse:this.pulse,speed:this.pulse,angle:g.randAngle(),vx:o*Math.cos(s),vy:n*Math.sin(s),shape:g.randArr(this.shapes),color:g.randColor(this.colors),angle:g.randAngle()};return r.vx=g.randNoise(this.minSpeedX,this.maxSpeedX),r.vy=g.randNoise(this.minSpeedY,this.maxSpeedY),r.vx=this.skew>0?g.randF(this.skew,this.maxSpeedX):g.randNoise(this.minSpeedX,this.maxSpeedX),r}},{key:"render",value:function(){var t=this,i=this.canvas,e=i.ctx,s=i.width,o=i.height;e.fillStyle=this.background,e.fillRect(0,0,s,o),this.blending&&(e.globalCompositeOperation="lighter"),this.particles.forEach((function(i){i.x+=i.vx,i.y+=i.vy;var n=g.distance(s/2,o/2,i.x,i.y),r=g.map(n,0,s/2,t.opacityCenter,t.opacityEdge);r=g.clamp(r,t.opacityEdge,t.opacityCenter),i.pulse?(i.size=i.os+g.wave(i.angle,i.pulse),i.angle+=.1):(i.size=i.size),e.fillStyle=i.color,e.globalAlpha=r,g.drawShape(e,i.x,i.y,i.size,i.shape),e.globalAlpha=1,(i.x-i.size<0||i.x+i.size>s||i.y-i.size<0||i.y+i.size>o)&&(i.x=s/2,i.y=o/2,i.vx=g.randNoise(t.minSpeedX,t.maxSpeedX),i.vy=g.randNoise(t.minSpeedY,t.maxSpeedY))})),window.requestAnimationFrame((function(){return t.render()}))}}]),i}()}();
+    </script>
 
-            <div class="contact-info">
-                <p>
-                    <strong>Teléfono:</strong> 
-                    <a href="tel:+524423788891">442-378-8891</a>
-                </p>
-                <p>
-                    <strong>Email:</strong> 
-                    <a href="mailto:contras.a.c.85@gmail.com">contras.a.c.85@gmail.com</a>
-                </p>
-                <p>
-                    <strong>Web:</strong> 
-                    <a href="https://contrasac85-svg.github.io/crmdemo/">contrasac85-svg.github.io/crmdemo</a>
-                </p>
-            </div>
+    <!-- Inicializar Finisher Header con tu config -->
+    <script type="text/javascript">
+        new FinisherHeader({
+            "count": 37,
+            "size": {
+                "min": 1,
+                "max": 1500,
+                "pulse": 1.1
+            },
+            "speed": {
+                "x": {
+                    "min": 0.6,
+                    "max": 3
+                },
+                "y": {
+                    "min": 0.6,
+                    "max": 3
+                }
+            },
+            "colors": {
+                "background": "#101010",
+                "particles": [
+                    "#fc5400",  // Naranja
+                    "#32c6ff",  // Azul cyan
+                    "#ffffff",  // Blanco
+                    "#ecd608"   // Amarillo
+                ]
+            },
+            "blending": "screen",
+            "opacity": {
+                "center": 0.45,
+                "edge": 0
+            },
+            "skew": 0,
+            "shapes": ["c"]
+        });
+    </script>
 
-            <a href="https://contrasac85-svg.github.io/crmdemo/demo.html" class="cta-primary" target="_blank" style="margin-top: 2rem;">
-                Ver Demo Ahora
-            </a>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2025
+</body>
+</html>
