@@ -341,34 +341,40 @@
     <!-- Inicializar Finisher Header con tu config -->
     <script type="text/javascript">
     new FinisherHeader({
-        "count": 37,
-        "size": {
-            "min": 1100,
-            "max": 1300,
-            "pulse": 1.1
+      "count": 5,
+      "size": {
+        "min": 1239,
+        "max": 1500,
+        "pulse": 2
+      },
+      "speed": {
+        "x": {
+          "min": 0.1,
+          "max": 0.5
         },
-        "speed": {
-            "x": { "min": 0.6, "max": 3 },
-            "y": { "min": 0.6, "max": 3 }
-        },
-        "colors": {
-            "background": "#1a1a2e",      // Azul oscuro
-            "particles": [
-                "#FF0000",  // Rojo
-                "#00FF00",  // Verde
-                "#0000FF",  // Azul
-                "#FFFF00"   // Amarillo
-            ]
-        },
-        "blending": "screen",
-        "opacity": {
-            "center": 0.45,
-            "edge": 0
-        },
-        "skew": 0,
-        "shapes": ["c"]  // c = círculos
+        "y": {
+          "min": 0.1,
+          "max": 0.6
+        }
+      },
+      "colors": {
+        "background": "#0017f2",
+        "particles": [
+          "#66cbf2",
+          "#100f0f",
+          "#ff00ff"
+        ]
+      },
+      "blending": "overlay",
+      "opacity": {
+        "center": 0.8,
+        "edge": 0
+      },
+      "skew": 0,
+      "shapes": [
+        "c"
+      ]
     });
     </script>
-
 </body>
 </html>
